@@ -76,7 +76,7 @@ func ValidateJwt(c *gin.Context) {
 	questions := rr.Questions
 	answers := rr.Answers
 
-	// Sign the answers using your logic
+	// Sign the answers using some logic
 	testSignature, err := SignAnswers(c, questions, answers)
 	if err != nil {
 		e = fmt.Errorf("failed to sign answers: %s", err)
