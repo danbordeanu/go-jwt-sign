@@ -1,0 +1,110 @@
+definitions:
+  model.JSONFailureResult:
+    properties:
+      code:
+        example: 400
+        type: integer
+      correlation_id:
+        example: 705e4dcb-3ecd-24f3-3a35-3e926e4bded5
+        type: string
+      data: {}
+      error:
+        example: There was an error processing the request
+        type: string
+      stacktrace:
+        type: string
+    type: object
+  model.JSONSuccessResult:
+    properties:
+      code:
+        example: 200
+        type: integer
+      correlation_id:
+        example: 705e4dcb-3ecd-24f3-3a35-3e926e4bded5
+        type: string
+      data: {}
+      message:
+        example: Success
+        type: string
+    type: object
+  model.JwtValidation:
+    properties:
+      answers:
+        example:
+        - answer1
+        - answer2
+        items:
+          type: string
+        type: array
+      jwt:
+        example: your_jwt_here
+        type: string
+      questions:
+        example:
+        - question1
+        - question2
+        items:
+          type: string
+        type: array
+    type: object
+  model.SignatureValidation:
+    properties:
+      signature:
+        example: test-signature-JonnyBoy
+        type: string
+      user:
+        example: JonnyBoy
+        type: string
+    type: object
+info:
+  contact:
+    name: API Support
+  termsOfService: http://swagger.io/terms/
+paths:
+  /v1/validate-jwt:
+    post:
+      description: Validate Jwt
+      operationId: validateJwt
+      parameters:
+      - description: validate signature
+        in: body
+        name: model.JwtValidation
+        required: true
+        schema:
+          $ref: '#/definitions/model.JwtValidation'
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: The request was validated and has been processed successfully
+            (sync)
+          schema:
+            $ref: '#/definitions/model.JSONSuccessResult'
+      summary: Validate jwt
+  /v1/verify-signature:
+    post:
+      consumes:
+      - application/json
+      description: Verify signature for a given user
+      operationId: verifySignature
+      parameters:
+      - description: validate signature
+        in: body
+        name: model.SignatureValidation
+        required: true
+        schema:
+          $ref: '#/definitions/model.SignatureValidation'
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: The request was validated and has been processed successfully
+            (sync)
+          schema:
+            $ref: '#/definitions/model.JSONSuccessResult'
+        "400":
+          description: The payload is invalid
+          schema:
+            $ref: '#/definitions/model.JSONFailureResult'
+      summary: Verify signature
+swagger: "2.0"

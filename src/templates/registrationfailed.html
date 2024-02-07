@@ -1,0 +1,55 @@
+<style>
+  /* Add a subtle shadow to the image */
+  img {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Use a sans-serif font for the text */
+  body {
+    font-family: 'Helvetica Neue', sans-serif;
+  }
+
+  /* Add some spacing between the text and the image */
+  #container {
+    display: flex;
+  }
+
+  #container > div {
+    padding: 20px;
+  }
+
+  /* Add a grey background color to the right column */
+  #container > div:nth-child(2) {
+    background-color: #f8f8f8;
+  }
+
+  /* Use a smaller font size for the contact information */
+  .contact-info {
+    font-size: 0.9em;
+  }
+
+  /* Use a blue color for the contact information links */
+  .contact-info a {
+    color: #007bff;
+  }
+
+  /* Add some styling to the site title link */
+  #site-title {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 1.2em;
+    text-decoration: none;
+    color: #333;
+  }
+
+  #site-title:hover {
+    color: #007bff;
+  }
+</style>
+
+<div id="container">
+  <div style="width: 50%;">
+    <p>Onboarding process {{ .status }}</p>
+    <p>There may be various reasons why this issue has occurred. To resolve it, we recommend reaching out to our support team for assistance.</p>
+  </div>
+</div>

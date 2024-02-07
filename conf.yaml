@@ -1,0 +1,10 @@
+swagger:
+    version: 1.0
+    title: JWT-GEN-API
+    description: JWT-GET-API Test Something
+    # this is doc URL endpoint
+    basepath: /api/
+    host: localhost:8080
+    contact: danbordeanu@almeriaindustries.com
+    default: jwt
+    default_label: endpoints

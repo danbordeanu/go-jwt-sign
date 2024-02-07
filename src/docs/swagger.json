@@ -1,0 +1,161 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "API Support"
+        }
+    },
+    "paths": {
+        "/v1/validate-jwt": {
+            "post": {
+                "description": "Validate Jwt",
+                "produces": [
+                    "text/html"
+                ],
+                "summary": "Validate jwt",
+                "operationId": "validateJwt",
+                "parameters": [
+                    {
+                        "description": "validate signature",
+                        "name": "model.JwtValidation",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.JwtValidation"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The request was validated and has been processed successfully (sync)",
+                        "schema": {
+                            "$ref": "#/definitions/model.JSONSuccessResult"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/verify-signature": {
+            "post": {
+                "description": "Verify signature for a given user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "text/html"
+                ],
+                "summary": "Verify signature",
+                "operationId": "verifySignature",
+                "parameters": [
+                    {
+                        "description": "validate signature",
+                        "name": "model.SignatureValidation",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.SignatureValidation"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The request was validated and has been processed successfully (sync)",
+                        "schema": {
+                            "$ref": "#/definitions/model.JSONSuccessResult"
+                        }
+                    },
+                    "400": {
+                        "description": "The payload is invalid",
+                        "schema": {
+                            "$ref": "#/definitions/model.JSONFailureResult"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "model.JSONFailureResult": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "example": 400
+                },
+                "correlation_id": {
+                    "type": "string",
+                    "example": "705e4dcb-3ecd-24f3-3a35-3e926e4bded5"
+                },
+                "data": {},
+                "error": {
+                    "type": "string",
+                    "example": "There was an error processing the request"
+                },
+                "stacktrace": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.JSONSuccessResult": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "example": 200
+                },
+                "correlation_id": {
+                    "type": "string",
+                    "example": "705e4dcb-3ecd-24f3-3a35-3e926e4bded5"
+                },
+                "data": {},
+                "message": {
+                    "type": "string",
+                    "example": "Success"
+                }
+            }
+        },
+        "model.JwtValidation": {
+            "type": "object",
+            "properties": {
+                "answers": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "example": [
+                        "answer1",
+                        "answer2"
+                    ]
+                },
+                "jwt": {
+                    "type": "string",
+                    "example": "your_jwt_here"
+                },
+                "questions": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "example": [
+                        "question1",
+                        "question2"
+                    ]
+                }
+            }
+        },
+        "model.SignatureValidation": {
+            "type": "object",
+            "properties": {
+                "signature": {
+                    "type": "string",
+                    "example": "test-signature-JonnyBoy"
+                },
+                "user": {
+                    "type": "string",
+                    "example": "JonnyBoy"
+                }
+            }
+        }
+    }
+}
