@@ -56,7 +56,7 @@ func StartGin(ctx context.Context) {
 	router.Use(otelgin.Middleware("jwt-sign"))
 
 	// let's load the html crap
-	router.Static("/assets", "./assets") // TODO: Why? What is this?
+	router.Static("/assets", "./assets") 
 	router.LoadHTMLGlob("templates/**")
 
 	// Set up the groups
