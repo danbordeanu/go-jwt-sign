@@ -69,7 +69,7 @@ func ValidateJwt(c *gin.Context) {
 	// decode jwt stored in ravendb
 	span.AddEvent("Decode JWT stored in db")
 
-	// decide what type of jwt we have based on presence absence of password key
+	// decide what type of jwt we have 
 	span.AddEvent("Unmarshal JWT")
 
 	// Retrieve the questions and answers from the query parameters
